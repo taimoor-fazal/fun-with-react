@@ -1,5 +1,17 @@
-.App {
-  text-align: center;
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set html and body to take up the full height and prevent overflow */
+html,
+body {
+  height: 100%;
+  background-color: #282c34;
+  padding: 0.5rem 1rem;
+  color: whitesmoke;
 }
 
 .App-logo {

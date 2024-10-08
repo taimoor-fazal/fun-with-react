@@ -1,0 +1,29 @@
+.myClass {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  border-radius: 4px;
+  height: 50px;
+
+  padding: 16px;
+  text-align: left;
+  background-color: #182025;
+}
+
+tr {
+  width: 100%;
+  border: 1px solid #b5b5b5;
+}
+
+td {
+  height: 40px;
+  border-radius: 4px;
+  padding: 16px;
+  background-color: #121618;
+}
