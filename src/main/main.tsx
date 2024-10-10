@@ -88,6 +88,7 @@ const ExpensiveComponent = () => {
 
   return (
     <div>
+      <h1>Count: {count2}</h1>
       <div className={CSS.buttonRow}>
         <button onClick={() => setCount2(count2 + 1)}>Increment</button>
         <button onClick={() => setCount2(count2 - 1)}>Decrement</button>
