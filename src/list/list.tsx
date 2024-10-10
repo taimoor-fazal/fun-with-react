@@ -17,7 +17,7 @@ const colors: ColorType[] = [
   { id: 7, colorName: "black", hexValue: "#000" },
 ];
 
-const renderColorItem1 = (color: ColorType) => (
+const RenderColorItem1 = (color: ColorType) => (
   <div
     style={{
       background: color.hexValue,
@@ -35,7 +35,7 @@ const renderColorItem1 = (color: ColorType) => (
   </div>
 );
 
-const renderColorItem2 = (color: ColorType) => (
+const RenderColorItem2 = (color: ColorType) => (
   <div
     style={{
       background: color.hexValue,
@@ -58,23 +58,41 @@ export const Data: React.FC = () => {
   return (
     <div className={CSS.body}>
       <h1>Data Component</h1>
+
       <h2>List 1</h2>
-      <List items={colors} renderItem={renderColorItem1} gap={0.5} />
+      <List
+        items={colors}
+        direction="row"
+        renderItem={RenderColorItem1}
+        gap={0.5}
+      />
+
+      {/* {colors.map((color) => (
+        <RenderColorItem1 color={color} />
+      ))} */}
+
+      {/* <h2>List 2</h2>
+
+      {colors.map((color) => (
+        <RenderColorItem2 color={color} />
+      ))} */}
+
+      {/* <List items={colors} renderItem={renderColorItem1} gap={0.5} /> */}
       <h2>List 2</h2>
       <List
         items={colors}
-        renderItem={renderColorItem2}
+        renderItem={RenderColorItem2}
         className={CSS.myClass}
       />
       <h3>List as a table</h3>
       <table>
-        <div>
-          <tr>
-            <th>Color Name</th>
-            <th>Hex Value</th>
-          </tr>
-        </div>
+        <tr>
+          <th>Color Name</th>
+          <th>Hex Value</th>
+        </tr>
+
         <List
+          className={CSS.custom}
           items={colors}
           renderItem={(color) => (
             <tr>
@@ -114,7 +132,7 @@ export const List = <T,>({
         gap: `${gap}rem`,
       }}
     >
-      {items.map((item, index) => renderItem(item))}
+      {items.map((item) => renderItem(item))}
     </div>
   );
 };

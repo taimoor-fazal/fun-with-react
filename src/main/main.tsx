@@ -1,9 +1,10 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 
 import CSS from "./main.module.css";
 
 const initialState = {
   count: 0,
+
   setCount: (count: number) => {},
 };
 
@@ -40,12 +41,22 @@ export const AppProvider2: React.FC<{ children: ReactNode }> = ({
 };
 
 export const Main: React.FC = () => {
-  return <Wrapper />;
+  return (
+    <AppProvider2>
+      <AppProvider>
+        <Wrapper>
+          <ExpensiveComponent />
+        </Wrapper>
+      </AppProvider>
+    </AppProvider2>
+  );
 };
 
-//const Wrapper: React.FC<{ children: ReactNode }> = ({ children }) => {
-const Wrapper: React.FC = () => {
-  const [count, setCount] = useState(0);
+const Wrapper: React.FC<{ children: ReactNode }> = ({ children }) => {
+  //const Wrapper: React.FC = () => {
+
+  const { count, setCount } = useContext(AppContext);
+  // const [count, setCount] = useState(0);
   useEffect(() => {
     console.log("Wrapper mounted");
   }, []);
@@ -56,13 +67,17 @@ const Wrapper: React.FC = () => {
   return (
     <div className={CSS.body}>
       <h1>Count: {count}</h1>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => setCount(count - 1)}>Decrement</button>
-      <ExpensiveComponent />
+      <div className={CSS.buttonRow}>
+        <button onClick={() => setCount(count + 1)}>Increment</button>
+        <button onClick={() => setCount(count - 1)}>Decrement</button>
+        {children}
+      </div>
     </div>
   );
 };
 const ExpensiveComponent = () => {
+  const { count2, setCount2 } = useContext(AppContext2);
+
   useEffect(() => {
     console.log("ExpensiveComponent mounted");
   }, []);
@@ -73,7 +88,10 @@ const ExpensiveComponent = () => {
 
   return (
     <div>
-      {"ExpensiveComponent"}
+      <div className={CSS.buttonRow}>
+        <button onClick={() => setCount2(count2 + 1)}>Increment</button>
+        <button onClick={() => setCount2(count2 - 1)}>Decrement</button>
+      </div>
       <SecondExpensiveComponent />
     </div>
   );
@@ -94,6 +112,10 @@ const SecondExpensiveComponent = () => {
   useEffect(() => {
     console.log("SecondExpensiveComponent mounted");
   }, []);
+
+  // for (let i = 0; i < 1000000; i++) {
+  //   console.log("SecondExpensiveComponent");
+  // }
 
   useEffect(() => {
     console.log("SecondExpensiveComponent rendered");

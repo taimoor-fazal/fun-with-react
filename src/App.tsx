@@ -6,7 +6,7 @@ import { Main } from "./main/main";
 function App() {
   return (
     <div>
-      {/* <Data /> */}
+      <Data />
       <Main />
     </div>
   );
